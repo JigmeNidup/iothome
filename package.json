@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/plots": "^1.2.1",
+    "antd": "^4.22.7",
+    "mqtt": "^4.3.7",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
