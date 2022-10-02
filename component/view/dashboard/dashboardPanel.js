@@ -14,8 +14,14 @@ import React, { useState } from "react";
 import { useDashboardDataStore } from "../../../context/dashboardStore";
 
 export default function DashboardPanel() {
-  const { clientConnected, mqttConnect, mqttDisconnect, setData, Data } =
-    useDashboardDataStore();
+  const {
+    clientConnected,
+    mqttConnect,
+    mqttDisconnect,
+    setData,
+    Data,
+    setUpdateState,
+  } = useDashboardDataStore();
   const [AddModalVisible, setAddModalVisible] = useState(false);
 
   const handleConnect = (props) => {
@@ -27,11 +33,12 @@ export default function DashboardPanel() {
     let tempData = Data;
     tempData.push(props);
     setData(tempData);
+    setUpdateState(Math.random());
     message.success("Added");
   };
-  
+
   const AddComponentForm = () => {
-    const componentTypes = ["light", "button"];
+    const componentTypes = ["light"];
 
     return (
       <Form
@@ -98,32 +105,34 @@ export default function DashboardPanel() {
           </Form.Item>
         </Form>
       </Col>
-      <Col>
+      {/* <Col>
         <Tooltip title="Settings" placement="bottom">
           <Button icon={<SettingOutlined />} />
         </Tooltip>
-      </Col>
-      <Col>
-        <Tooltip title="Add Component" placement="rightBottom">
-          <Button
-            onClick={() => {
-              setAddModalVisible(true);
+      </Col> */}
+      {clientConnected ? (
+        <Col>
+          <Tooltip title="Add Component" placement="rightBottom">
+            <Button
+              onClick={() => {
+                setAddModalVisible(true);
+              }}
+              icon={<PlusOutlined />}
+            />
+          </Tooltip>
+          <Modal
+            centered
+            visible={AddModalVisible}
+            footer={null}
+            title="Add Component"
+            onCancel={() => {
+              setAddModalVisible(false);
             }}
-            icon={<PlusOutlined />}
-          />
-        </Tooltip>
-        <Modal
-          centered
-          visible={AddModalVisible}
-          footer={null}
-          title="Add Component"
-          onCancel={() => {
-            setAddModalVisible(false);
-          }}
-        >
-          <AddComponentForm />
-        </Modal>
-      </Col>
+          >
+            <AddComponentForm />
+          </Modal>
+        </Col>
+      ) : null}
     </Row>
   );
 }

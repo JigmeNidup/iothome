@@ -6,7 +6,7 @@ export default function Home() {
       <Head>
         <title>Iot Home</title>
         <meta name="description" content="Iot Home" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iothinc_logo.png" />
       </Head>
     </div>
   );

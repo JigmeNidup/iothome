@@ -6,6 +6,7 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 import { useDataStore } from "../../context/dataStore";
 import logo from "../../public/iothinc_logo.png";
@@ -20,6 +21,11 @@ export default function Header({ children }) {
       key: "2",
       label: <Link href="/dashboard">Dashboard</Link>,
       icon: <DashboardOutlined />,
+    },
+    {
+      key: "3",
+      label: <Link href="/chat">Chat</Link>,
+      icon: <MessageOutlined />,
     },
   ];
 

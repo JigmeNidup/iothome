@@ -14,7 +14,12 @@ export default function Light({ config }) {
   return (
     <Card
       hoverable
-      style={{ backgroundColor: state ? "green" : "red" }}
+      style={{
+        backgroundColor: state ? "green" : "red",
+        width: 180,
+        height: 100,
+        textAlign: "center",
+      }}
       onClick={handleClick}
     >
       {title}
